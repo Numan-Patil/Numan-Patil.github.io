@@ -120,6 +120,42 @@
             background-color: #F3F4F6;
             border-radius: 0.5rem;
         }
+
+        /* Heart Like Animation */
+        #profile-pic-container .like-heart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 80px;
+            height: 80px;
+            color: #EC4899; /* Reddish-pink color */
+            opacity: 0;
+            pointer-events: none; /* So it doesn't interfere with clicks */
+            z-index: 10; /* Ensure heart is on top of the image */
+        }
+
+        #profile-pic-container .like-heart.show-heart {
+            animation: like-heart-animation 1s ease-in-out;
+        }
+
+        @keyframes like-heart-animation {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0);
+            }
+            15% {
+                opacity: 0.9;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            30% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            80%, 100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
     </style>
 </head>
 <body class="p-4 md:p-8">
@@ -169,7 +205,12 @@
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <div class="lg:col-span-1">
                         <div class="profile-card p-6 rounded-lg border-2 border-gray-900 text-center">
-                            <img src="profile.svg" alt="Numan Patil" class="w-40 h-40 rounded-full mx-auto mb-4 border-2 border-gray-900 object-cover">
+                            <div id="profile-pic-container" class="relative mx-auto mb-4 w-40 h-40 cursor-pointer">
+                                <img src="profile.svg" alt="Numan Patil" class="w-full h-full rounded-full border-2 border-gray-900 object-cover">
+                                <svg id="like-heart" class="like-heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                </svg>
+                            </div>
                             <h2 class="text-2xl font-bold">Numan Patil</h2>
                             <p class="text-gray-600">numan.n.patil@gmail.com</p>
                             <p class="text-gray-600">+91 7483110160</p>
@@ -352,6 +393,19 @@
                 openIcon.classList.remove('hidden');
                 closeIcon.classList.add('hidden');
             }
+        });
+
+        // Heart Like Animation on Profile Picture
+        const profilePicContainer = document.getElementById('profile-pic-container');
+        const likeHeart = document.getElementById('like-heart');
+
+        profilePicContainer.addEventListener('dblclick', () => {
+            likeHeart.classList.add('show-heart');
+
+            // Remove the class after the animation completes
+            setTimeout(() => {
+                likeHeart.classList.remove('show-heart');
+            }, 1000); // Duration matches the CSS animation
         });
     </script>
 </body>
