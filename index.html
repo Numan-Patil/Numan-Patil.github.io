@@ -160,7 +160,7 @@
         .logo-carousel-track {
             display: flex;
             align-items: center;
-            width: calc(200px * 16); /* 8 logos * ~200px width (logo + margin) * 2 for duplication */
+            width: calc(200px * 20); /* 10 logos * ~200px width (logo + margin) * 2 for duplication */
             animation: scroll 60s linear infinite;
         }
         .logo-carousel-container:hover .logo-carousel-track {
@@ -174,7 +174,7 @@
         }
         @keyframes scroll {
             from { transform: translateX(0); }
-            to { transform: translateX(calc(-200px * 8)); } /* Move by half the total width (the original 8 logos) */
+            to { transform: translateX(calc(-200px * 10)); } /* Move by half the total width (the original 10 logos) */
         }
     </style>
 </head>
@@ -486,4 +486,5 @@
     </script>
 </body>
 </html>
+
 
