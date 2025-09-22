@@ -151,6 +151,31 @@
                 transform: translate(-50%, -50%) scale(1);
             }
         }
+
+        /* Logo Carousel */
+        .logo-carousel-container {
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        .logo-carousel-track {
+            display: flex;
+            align-items: center;
+            width: calc(200px * 16); /* 8 logos * ~200px width (logo + margin) * 2 for duplication */
+            animation: scroll 60s linear infinite;
+        }
+        .logo-carousel-container:hover .logo-carousel-track {
+            animation-play-state: paused;
+        }
+        .logo-item {
+            transition: transform 0.3s ease;
+        }
+        .logo-item:hover {
+            transform: scale(1.1);
+        }
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(calc(-200px * 8)); } /* Move by half the total width (the original 8 logos) */
+        }
     </style>
 </head>
 <body class="p-4 md:p-8">
@@ -329,6 +354,36 @@
                         <li><b>Great Learning:</b> UI/UX for Beginners</li>
                         <li><b>Semrush:</b> SEO Crash Course</li>
                     </ul>
+                    <div class="mt-12">
+                        <h4 class="text-xl font-bold mb-4 text-center text-gray-800">Certified By</h4>
+                        <div class="logo-carousel-container relative w-full overflow-hidden h-24 flex items-center">
+                            <div class="logo-carousel-track">
+                                <!-- Logos (duplicated for endless effect) -->
+                                <img src="https://nptel.ac.in/_app/immutable/assets/logo-m.CNHeS_sM.jpg" alt="NPTEL" class="logo-item h-8 w-auto mx-12">
+                                <img src="https://cdn.simpleicons.org/postman" alt="Postman" class="logo-item h-12 w-auto mx-12">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="logo-item h-8 w-auto mx-12">
+                                <img src="https://cdn.simpleicons.org/meta" alt="Meta" class="logo-item h-12 w-auto mx-12">
+                                <img src="https://cdn.worldvectorlogo.com/logos/pmi-6.svg" alt="PMI" class="logo-item h-12 w-auto mx-12">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" class="logo-item h-8 w-auto mx-12">
+                                <img src="https://cdn.simpleicons.org/canva" alt="Canva" class="logo-item h-12 w-auto mx-12">
+                                <img src="https://cdn.simpleicons.org/semrush" alt="Semrush" class="logo-item h-12 w-auto mx-12">
+                                <img src="https://cdn.simpleicons.org/hp" alt="HP" class="logo-item h-12 w-auto mx-12">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="aws" class="logo-item h-8 w-auto mx-12">
+                                
+                                <!-- Duplicates -->
+                                <img src="https://nptel.ac.in/_app/immutable/assets/logo-m.CNHeS_sM.jpg" alt="NPTEL" class="logo-item h-8 w-auto mx-12">
+                                <img src="https://cdn.simpleicons.org/postman" alt="Postman" class="logo-item h-12 w-auto mx-12">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="logo-item h-8 w-auto mx-12">
+                                <img src="https://cdn.simpleicons.org/meta" alt="Meta" class="logo-item h-12 w-auto mx-12">
+                                <img src="https://cdn.worldvectorlogo.com/logos/pmi-6.svg" alt="PMI" class="logo-item h-12 w-auto mx-12">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" class="logo-item h-8 w-auto mx-12">
+                                <img src="https://cdn.simpleicons.org/canva" alt="Canva" class="logo-item h-12 w-auto mx-12">
+                                <img src="https://cdn.simpleicons.org/semrush" alt="Semrush" class="logo-item h-12 w-auto mx-12">
+                                <img src="https://cdn.simpleicons.org/hp" alt="HP" class="logo-item h-12 w-auto mx-12">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="aws" class="logo-item h-8 w-auto mx-12">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -431,6 +486,4 @@
     </script>
 </body>
 </html>
-
-
 
