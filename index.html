@@ -116,6 +116,43 @@
             text-align: center;
         }
 
+        /* NEW Vertical Swipe Text Animation for Testimonials */
+        .swipe-container-vertical {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .swipe-container-vertical .swipe-text, .swipe-container-vertical .swipe-text-hover {
+            transition: transform 0.4s ease-in-out;
+        }
+        .swipe-container-vertical .swipe-text-hover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: translateY(100%); /* Start below */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .swipe-container-vertical:hover .swipe-text {
+            transform: translateY(-100%); /* Slide up */
+        }
+        .swipe-container-vertical:hover .swipe-text-hover {
+            transform: translateY(0); /* Slide in from bottom */
+        }
+        .card.swipe-container-vertical {
+            padding: 0;
+        }
+        .card.swipe-container-vertical .swipe-text {
+            padding: 1.5rem;
+        }
+        .card.swipe-container-vertical .swipe-text-hover {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
         /* Heart Like Animation */
         #profile-pic-container .like-heart {
             position: absolute;
@@ -213,6 +250,12 @@
                 <a href="#" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg text-gray-800" data-target="education">
                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 14l9-5-9-5-9 5 9 5z" /><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222 4 2.222V20M12 12L8 9.778 4 12l4 2.222L12 12zm8 0l-4-2.222-4 2.222 4 2.222 4-2.222z" /></svg>
                     Education
+                </a>
+                <a href="#" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg text-gray-800" data-target="testimonials">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                    Testimonials
                 </a>
             </nav>
         </aside>
@@ -436,6 +479,49 @@
                     </div>
                  </div>
             </section>
+
+            <!-- NEW: Testimonials Section -->
+            <section id="testimonials" class="section-content">
+                <h3 class="text-3xl font-bold mb-6">What Others Say</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="card rounded-lg swipe-container-vertical">
+                         <div class="swipe-text">
+                            <p class="text-gray-600 italic">"Numan is amazingly dedicated, solves problems with ease, and picks things up super fast. Plus, he's a great person to work with."</p>
+                            <div class="mt-4 text-right">
+                                <p class="font-bold">Ayman Patil</p>
+                                <p class="text-sm text-gray-500">Full Stack Engineer @Cognizant</p>
+                            </div>
+                         </div>
+                         <div class="swipe-text-hover bg-white">
+                            <p class="text-gray-700 italic">"Okay fine, he forced me to say it… but I can't deny he's a good person. After all, he's my brother."</p>
+                         </div>
+                    </div>
+                    <div class="card rounded-lg swipe-container-vertical">
+                         <div class="swipe-text">
+                            <p class="text-gray-600 italic">"Working with Numan during Hackvyuha was a great experience. His UI/UX insights were a major reason we won the prize. He's creative and highly motivated."</p>
+                            <div class="mt-4 text-right">
+                                <p class="font-bold">Raghavendra Mellenavar</p>
+                                <p class="text-sm text-gray-500">Teammate, Hackvyuha 2025</p>
+                            </div>
+                         </div>
+                         <div class="swipe-text-hover bg-white">
+                            <p class="text-gray-700 italic">"I said this in exchange for a shawarma. Thanks, Numan!"</p>
+                         </div>
+                    </div>
+                    <div class="card rounded-lg swipe-container-vertical md:col-span-2 bg-yellow-100 border-black-300">
+                         <div class="swipe-text">
+                            <p class="text-gray-700 italic">"He asks the best questions. Really makes you think. Sometimes for hours. About why he broke the build again. 10/10 would debug with again."</p>
+                            <div class="mt-4 text-right">
+                                <p class="font-bold">My Rubber Duck</p>
+                                <p class="text-sm text-gray-500">Lead Debugging Consultant</p>
+                            </div>
+                         </div>
+                         <div class="swipe-text-hover bg-white">
+                            <p class="text-gray-700 italic">"Quack."</p>
+                         </div>
+                    </div>
+                </div>
+            </section>
         </main>
     </div>
 
@@ -496,5 +582,6 @@
     </script>
 </body>
 </html>
+
 
 
