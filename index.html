@@ -213,6 +213,28 @@
             from { transform: translateX(0); }
             to { transform: translateX(calc(-200px * 10)); } /* Move by half the total width (the original 10 logos) */
         }
+
+        /* Confetti Animation */
+        .confetti-piece {
+            position: absolute;
+            width: 8px;
+            height: 16px;
+            top: -20px;
+            opacity: 0;
+            animation: confetti-fall 3s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(0) rotateZ(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(250px) rotateZ(720deg);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body class="p-4 md:p-8">
@@ -269,7 +291,7 @@
                     <div class="lg:col-span-1">
                         <div class="profile-card p-6 rounded-lg border-2 border-gray-900 text-center">
                             <div id="profile-pic-container" class="relative mx-auto mb-4 w-40 h-40 cursor-pointer">
-                                <img src="profile.svg" alt="Numan Patil" class="w-full h-full rounded-full border-2 border-gray-900 object-cover">
+                                <img src="https://raw.githubusercontent.com/Numan-Patil/images/main/profile.svg" alt="Numan Patil" class="w-full h-full rounded-full border-2 border-gray-900 object-cover">
                                 <svg id="like-heart" class="like-heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                                 </svg>
@@ -286,7 +308,7 @@
                                 </a>
                             </div>
                             <div class="mt-6">
-                                <a href="Numan_Resume.pdf" download="Numan_Patil_Resume.pdf" 
+                                <a href="https://raw.githubusercontent.com/Numan-Patil/Resume/main/Numan_Resume.pdf" download="Numan_Patil_Resume.pdf" 
                                    class="group relative inline-flex items-center justify-center bg-gray-900 text-white px-6 py-2 rounded-lg font-semibold border-2 border-gray-900 transition-all duration-200 hover:bg-white hover:text-gray-900 h-11 w-40 overflow-hidden">
                                     <span class="absolute transition-all duration-300 ease-in-out group-hover:-translate-y-10">
                                         Download CV
@@ -579,9 +601,47 @@
                 likeHeart.classList.remove('show-heart');
             }, 1000); // Duration matches the CSS animation
         });
+
+        // Confetti Animation on Education Cards
+        const educationCards = document.querySelectorAll('#education .card');
+        const confettiColors = ['#fde68a', '#fca5a5', '#86efac', '#93c5fd', '#c4b5fd', '#f0abfc'];
+
+        function createConfetti(card) {
+            // Make sure card's position is relative and overflow is hidden to contain the confetti
+            if (getComputedStyle(card).position === 'static') {
+                card.style.position = 'relative';
+            }
+            card.style.overflow = 'hidden';
+
+            for (let i = 0; i < 50; i++) { // Create 50 pieces of confetti
+                const confettiPiece = document.createElement('div');
+                confettiPiece.classList.add('confetti-piece');
+                
+                const randomColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+                confettiPiece.style.backgroundColor = randomColor;
+                
+                // Random horizontal position within the card
+                confettiPiece.style.left = `${Math.random() * 100}%`;
+                
+                // Random animation duration and delay for a more natural effect
+                confettiPiece.style.animationDuration = `${Math.random() * 2 + 2}s`; // 2s to 4s
+                confettiPiece.style.animationDelay = `${Math.random() * 0.5}s`;
+                
+                card.appendChild(confettiPiece);
+                
+                // Remove the confetti piece after the animation ends to prevent DOM clutter
+                confettiPiece.addEventListener('animationend', () => {
+                    confettiPiece.remove();
+                });
+            }
+        }
+
+        educationCards.forEach(card => {
+            // Using mousedown for a more immediate feel than click
+            card.addEventListener('mousedown', () => createConfetti(card));
+        });
+
     </script>
 </body>
 </html>
-
-
 
