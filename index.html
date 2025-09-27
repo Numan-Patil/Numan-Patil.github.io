@@ -67,7 +67,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .profile-card {
-             background-color: #FEF3C7; /* Light Yellow */
+            background-color: #FEF3C7; /* Light Yellow */
         }
         .icon-link {
             transition: transform 0.2s;
@@ -447,10 +447,11 @@
                         <span class="tag font-mono text-sm px-3 py-1 rounded-md">Git/GitHub</span>
                         <span class="tag font-mono text-sm px-3 py-1 rounded-md">Docker</span>
                         <span class="tag font-mono text-sm px-3 py-1 rounded-md">Flask</span>
+                        <span id="add-skill-btn" class="tag font-mono text-sm px-3 py-1 rounded-md cursor-pointer bg-green-200 text-green-800 border-green-800 hover:bg-green-300">+Add</span>
                     </div>
                     
                     <!-- Certifications Revamped -->
-                    <h4 class="relative text-xl font-bold mb-3 h-7 overflow-hidden group cursor-pointer">
+                    <h4 class="relative text-xl font-bold mb-4 h-7 overflow-hidden group cursor-pointer">
                         <span class="absolute inset-0 flex items-center transition-all duration-300 ease-in-out group-hover:-translate-y-full">Certifications</span>
                         <span class="absolute inset-0 flex items-center translate-y-full transition-all duration-300 ease-in-out group-hover:translate-y-0">Because LinkedIn said so.</span>
                     </h4>
@@ -622,7 +623,7 @@
                     </div>
                     <div class="card rounded-lg swipe-container-vertical md:col-span-2 bg-yellow-100 border-black-300">
                          <div class="swipe-text">
-                            <p class="text-gray-700 italic">"He asks the best questions. Really makes you think. Sometimes for hours. About why he broke the build again. 10/10 would debug with again."</p>
+                            <p class="text-gray-600 italic">"He asks the best questions. Really makes you think. Sometimes for hours. About why he broke the build again. 10/10 would debug with again."</p>
                             <div class="mt-4 text-right">
                                 <p class="font-bold">My Rubber Duck</p>
                                 <p class="text-sm text-gray-500">Lead Debugging Consultant</p>
@@ -635,6 +636,22 @@
                 </div>
             </section>
         </main>
+    </div>
+
+    <!-- Add Skill Modal -->
+    <div id="skill-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50">
+        <div class="bg-white rounded-lg border-2 border-gray-900 p-8 max-w-sm w-full relative shadow-lg text-center" id="modal-content">
+            <button id="close-modal-btn" class="absolute top-2 right-2 text-gray-500 hover:text-gray-900">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h3 class="text-xl font-bold mb-4">Suggest a Skill!</h3>
+            <p class="text-gray-700">
+                Don't see a skill you're looking for? Let me know! I'm always eager to learn new technologies.
+            </p>
+            <p class="mt-4">
+                Email me at <a href="mailto:numan.n.patil@gmail.com" class="font-semibold text-blue-600 hover:underline">numan.n.patil@gmail.com</a> with your suggestion, and I'll get back to you after I've explored it.
+            </p>
+        </div>
     </div>
 
     <script>
@@ -750,9 +767,29 @@
                 content.style.maxHeight = (content.scrollHeight + 1) + "px";
             }
         });
+
+        // Add Skill Modal Logic
+        const addSkillBtn = document.getElementById('add-skill-btn');
+        const skillModal = document.getElementById('skill-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const modalContent = document.getElementById('modal-content');
+
+        addSkillBtn.addEventListener('click', () => {
+            skillModal.classList.remove('hidden');
+        });
+
+        const closeModal = () => {
+            skillModal.classList.add('hidden');
+        };
+
+        closeModalBtn.addEventListener('click', closeModal);
+        skillModal.addEventListener('click', (e) => {
+            if (e.target === skillModal) {
+                closeModal();
+            }
+        });
         
     </script>
 </body>
 </html>
-
 
