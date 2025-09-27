@@ -197,7 +197,7 @@
         .logo-carousel-track {
             display: flex;
             align-items: center;
-            width: calc(200px * 20); /* 10 logos * ~200px width (logo + margin) * 2 for duplication */
+            width: calc(200px * 24); /* 12 logos * ~200px width (logo + margin) * 2 for duplication */
             animation: scroll 60s linear infinite;
         }
         .logo-carousel-container:hover .logo-carousel-track {
@@ -211,7 +211,7 @@
         }
         @keyframes scroll {
             from { transform: translateX(0); }
-            to { transform: translateX(calc(-200px * 10)); } /* Move by half the total width (the original 10 logos) */
+            to { transform: translateX(calc(-200px * 12)); } /* Move by half the total width (the original 12 logos) */
         }
 
         /* Confetti Animation */
@@ -234,6 +234,19 @@
                 transform: translateY(250px) rotateZ(720deg);
                 opacity: 0;
             }
+        }
+
+        /* Accordion Styles */
+        .accordion-button svg {
+            transition: transform 0.3s ease-in-out;
+        }
+        .accordion-button.active svg {
+            transform: rotate(180deg);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
         }
     </style>
 </head>
@@ -409,7 +422,7 @@
                         <span class="tag font-mono text-sm px-3 py-1 rounded-md">React.js</span>
                         <span class="tag font-mono text-sm px-3 py-1 rounded-md">Node.js</span>
                         <span class="tag font-mono text-sm px-3 py-1 rounded-md">HTML</span>
-                        <span class="tag font-mono text-sm px-3 py-1 rounded-md">CSS</span>
+                        <span class="tag font-mono text-sm px-3 py-1 rounded-md">CSS/Tailwind CSS</span>
                         <span class="tag font-mono text-sm px-3 py-1 rounded-md">PHP</span>
                         <span class="tag font-mono text-sm px-3 py-1 rounded-md">MySQL</span>
                         <span class="tag font-mono text-sm px-3 py-1 rounded-md">MongoDB</span>
@@ -419,31 +432,70 @@
                         <span class="tag font-mono text-sm px-3 py-1 rounded-md">Docker</span>
                         <span class="tag font-mono text-sm px-3 py-1 rounded-md">Flask</span>
                     </div>
-                    <h4 class="text-xl font-bold mb-3">Certifications</h4>
-                    <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li><b>NPTEL:</b> Data Structure and Algorithms using Java</li>
-                        <li><b>Postman:</b> API Fundamentals Student Expert</li>
-                        <li><b>Google:</b> Foundations of Cybersecurity</li>
-                        <li><b>Meta:</b> Introduction to Front-End Development</li>
-                        <li><b>HP Life:</b> Data Science and Analytics</li>
-                        <li><b>AWS:</b> Introduction to Machine Learning on AWS</li>
-                        <li><b>HackerRank:</b> Python(Basics)</li>
-                        <li><b>Google Cloud:</b> Introduction to Generative AI</li>
-                        <li><b>Google Cloud:</b> Introduction to Generative AI Studio</li>
-                        <li><b>Google Cloud:</b> Introduction to Large Language Models</li>
-                        <li><b>Google Cloud:</b> Introduction to Image Generation</li>
-                        <li><b>Google Cloud:</b> Introduction to Responsible AI</li>
-                        <li><b>Google Daydream:</b> Introduction to Augmented Reality and ARCore</li>
-                        <li><b>PMI:</b> Fundamentals of Predictive Project Management</li>
-                        <li><b>HP Life:</b> Agile Project Management</li>
-                        <li><b>IBM Skills Build:</b> Quantam Enigmas</li>
-                        <li><b>IBM Skills Build:</b> Introduction to UX Design</li>
-                        <li><b>HP Life:</b> Effective Learership</li>
-                        <li><b>HP Life:</b> Effective Presentations</li>
-                        <li><b>Canva:</b> Graphic Design Essentials</li>
-                        <li><b>Great Learning:</b> UI/UX for Beginners</li>
-                        <li><b>Semrush:</b> SEO Crash Course</li>
-                    </ul>
+                    
+                    <!-- Certifications Revamped -->
+                    <h4 class="text-xl font-bold mb-4">Certifications</h4>
+                    <div id="certifications-accordion" class="border-2 border-gray-900">
+                        
+                        <!-- Accordion Item 1 -->
+                        <div class="accordion-item border-b-2 border-gray-900">
+                            <button class="accordion-button w-full flex justify-between items-center text-left p-4 focus:outline-none hover:bg-gray-100">
+                                <h5 class="text-lg font-semibold text-gray-800">Cloud, AI & Data Science</h5>
+                                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="p-4 bg-gray-50 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
+                                    <a href="https://www.coursera.org/account/accomplishments/verify/9XEQQFYRZXHT" target="_blank" class="text-gray-700 hover:text-blue-600 group flex gap-2 items-center"><span class="group-hover:underline"><b>Google Cloud:</b> Intro to Generative AI</span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                                    <a href="https://www.coursera.org/account/accomplishments/verify/CS2YNHTSYFGF" target="_blank" class="text-gray-700 hover:text-blue-600 group flex gap-2 items-center"><span class="group-hover:underline"><b>Google Cloud:</b> Intro to Gen AI Studio</span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                                    <a href="https://www.coursera.org/account/accomplishments/verify/4JXRTH6X5J6Y" target="_blank" class="text-gray-700 hover:text-blue-600 group flex gap-2 items-center"><span class="group-hover:underline"><b>Google Cloud:</b> Intro to Large Language Models</span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                                    <a href="https://www.coursera.org/account/accomplishments/verify/DQEKFBX65QY7" target="_blank" class="text-gray-700 hover:text-blue-600 group flex gap-2 items-center"><span class="group-hover:underline"><b>Google Cloud:</b> Intro to Image Generation</span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                                    <a href="https://www.cloudskillsboost.google/public_profiles/26ecd3f9-721f-4bd9-a9c9-511b688aba6c/badges/6057297" target="_blank" class="text-gray-700 hover:text-blue-600 group flex gap-2 items-center"><span class="group-hover:underline"><b>Google Cloud:</b> Intro to Responsible AI</span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                                    <a href="https://www.coursera.org/account/accomplishments/verify/6ZFTB9J74NUH" target="_blank" class="text-gray-700 hover:text-blue-600 group flex gap-2 items-center"><span class="group-hover:underline"><b>AWS:</b> Intro to Machine Learning on AWS</span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                                    <a href="https://www.life-global.org/certificate/baa6c84a-00d7-4e95-9d23-080e4dd42352" target="_blank" class="text-gray-700 hover:text-blue-600 group flex gap-2 items-center"><span class="group-hover:underline"><b>HP Life:</b> Data Science and Analytics</span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                                    <a href="https://www.credly.com/badges/c5f0ac79-92c8-4f43-be64-ef5ad0740b2f/public_url" target="_blank" class="text-gray-700 hover:text-blue-600 group flex gap-2 items-center"><span class="group-hover:underline"><b>IBM Skills Build:</b> Quantam Enigmas</span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Accordion Item 2 -->
+                        <div class="accordion-item border-b-2 border-gray-900">
+                           <button class="accordion-button w-full flex justify-between items-center text-left p-4 focus:outline-none hover:bg-gray-100">
+                                <h5 class="text-lg font-semibold text-gray-800">Web Development & Core Skills</h5>
+                                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="p-4 bg-gray-50 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
+                                    <a href="https://www.coursera.org/account/accomplishments/verify/ASGWFS33WANA" target="_blank" class="text-gray-700 hover:text-blue-600 group flex gap-2 items-center"><span class="group-hover:underline"><b>Meta:</b> Intro to Front-End Development</span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                                    <a href="#" target="_blank" class="text-gray-700 hover:text-blue-600 group flex gap-2 items-center"><span class="group-hover:underline"><b>Postman:</b> API Fundamentals Student Expert</span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                                    <a href="#" target="_blank" class="text-gray-700 hover:text-blue-600 group flex gap-2 items-center"><span class="group-hover:underline"><b>NPTEL:</b> DSA using Java</span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                                    <a href="https://www.hackerrank.com/certificates/5f81a19940c2" target="_blank" class="text-gray-700 hover:text-blue-600 group flex gap-2 items-center"><span class="group-hover:underline"><b>HackerRank:</b> Python (Basics)</span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                                    <a href="https://www.coursera.org/account/accomplishments/verify/6R9KV4X4RE5C" target="_blank" class="text-gray-700 hover:text-blue-600 group flex gap-2 items-center"><span class="group-hover:underline"><b>Google:</b> Foundations of Cybersecurity</span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                                    <a href="https://www.coursera.org/account/accomplishments/verify/3JY2RM6LX42T" target="_blank" class="text-gray-700 hover:text-blue-600 group flex gap-2 items-center"><span class="group-hover:underline"><b>Google Daydream:</b> Intro to AR and ARCore</span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                                </div>
+                            </div>
+                        </div>
+
+                         <!-- Accordion Item 3 -->
+                        <div class="accordion-item">
+                           <button class="accordion-button w-full flex justify-between items-center text-left p-4 focus:outline-none hover:bg-gray-100">
+                                <h5 class="text-lg font-semibold text-gray-800">Project Management, Design & Business</h5>
+                                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="p-4 bg-gray-50 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
+                                    <a href="https://www.credly.com/badges/3f4c0710-b311-4b42-9d07-1f4121d15e1e/public_url" target="_blank" class="text-gray-700 hover:text-blue-600 group flex gap-2 items-center"><span class="group-hover:underline"><b>PMI:</b> Fundamentals of Predictive PM</span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                                    <a href="https://www.life-global.org/certificate/8494f3b2-9ee3-48fb-9258-2a09b979d03f" target="_blank" class="text-gray-700 hover:text-blue-600 group flex gap-2 items-center"><span class="group-hover:underline"><b>HP Life:</b> Agile Project Management</span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                                    <a href="#" target="_blank" class="text-gray-700 hover:text-blue-600 group flex gap-2 items-center"><span class="group-hover:underline"><b>IBM Skills Build:</b> Intro to UX Design</span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                                    <a href="https://www.mygreatlearning.com/certificate/HPBJGIMC" target="_blank" class="text-gray-700 hover:text-blue-600 group flex gap-2 items-center"><span class="group-hover:underline"><b>Great Learning:</b> UI/UX for Beginners</span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                                    <a href="https://www.canva.com/en/design-school/certification-award/fc3a0583-2cac-4cef-bec2-6b27f97e5948?" target="_blank" class="text-gray-700 hover:text-blue-600 group flex gap-2 items-center"><span class="group-hover:underline"><b>Canva:</b> Graphic Design Essentials</span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                                    <a href="https://static.semrush.com/academy/certificates/049d53eba4/numan-patil_2.pdf" target="_blank" class="text-gray-700 hover:text-blue-600 group flex gap-2 items-center"><span class="group-hover:underline"><b>Semrush:</b> SEO Crash Course</span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                                    <a href="https://www.life-global.org/certificate/482a9ee8-57a9-4bcf-8687-b62e69beab1e" target="_blank" class="text-gray-700 hover:text-blue-600 group flex gap-2 items-center"><span class="group-hover:underline"><b>HP Life:</b> Effective Leadership</span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                                    <a href="https://www.life-global.org/certificate/3846d173-0d4f-40e9-9c2d-f4a6fd25d213" target="_blank" class="text-gray-700 hover:text-blue-600 group flex gap-2 items-center"><span class="group-hover:underline"><b>HP Life:</b> Effective Presentations</span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="mt-12">
                         <h4 class="text-xl font-bold mb-4 text-center text-gray-800">Certified By</h4>
                         <div class="logo-carousel-container relative w-full overflow-hidden h-24 flex items-center">
@@ -504,7 +556,7 @@
                             <p class="text-gray-600 font-medium">Percentage: 70%</p>
                         </div>
                          <div class="swipe-text-hover">
-                           <p class="text-gray-700 italic">“Learned that math has trust issues.”</p>
+                            <p class="text-gray-700 italic">“Learned that math has trust issues.”</p>
                         </div>
                     </div>
                      <div class="card rounded-lg swipe-container">
@@ -515,7 +567,7 @@
                             <p class="text-gray-600 font-medium">Percentage: 91%</p>
                         </div>
                          <div class="swipe-text-hover">
-                           <p class="text-gray-700 italic">“Apparently peaked here.”</p>
+                            <p class="text-gray-700 italic">“Apparently peaked here.”</p>
                         </div>
                     </div>
                  </div>
@@ -650,7 +702,6 @@
                 
                 // Remove the confetti piece after the animation ends to prevent DOM clutter
                 confettiPiece.addEventListener('animationend', () => {
-                    +
                     confettiPiece.remove();
                 });
             }
@@ -661,6 +712,43 @@
             card.addEventListener('mousedown', () => createConfetti(card));
         });
 
+        // Accordion Logic
+        const accordionButtons = document.querySelectorAll('.accordion-button');
+
+        accordionButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const isAlreadyActive = button.classList.contains('active');
+
+                // First, close all accordions
+                accordionButtons.forEach(btn => {
+                    if (btn !== button) {
+                        btn.classList.remove('active');
+                        btn.nextElementSibling.style.maxHeight = null;
+                    }
+                });
+
+                // Then, toggle the clicked one
+                button.classList.toggle('active');
+                if (isAlreadyActive) {
+                    content.style.maxHeight = null;
+                } else {
+                    // Add 1px buffer for potential subpixel rendering issues with grid layouts
+                    content.style.maxHeight = (content.scrollHeight + 1) + "px";
+                }
+            });
+        });
+        
+        // Adjust open accordion on resize to handle content reflow
+        window.addEventListener('resize', () => {
+            const activeAccordionButton = document.querySelector('.accordion-button.active');
+            if (activeAccordionButton) {
+                const content = activeAccordionButton.nextElementSibling;
+                content.style.maxHeight = (content.scrollHeight + 1) + "px";
+            }
+        });
+
     </script>
 </body>
 </html>
+
