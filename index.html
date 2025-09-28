@@ -648,6 +648,41 @@
                         </div>
                     </div>
                  </div>
+                 <!-- Clock Card -->
+                 <div class="mt-8 pt-6 border-t-2 border-gray-200">
+                    <h4 class="font-bold text-xl text-center mb-4 text-gray-800">Time Invested in Learning</h4>
+                    <div class="flex flex-wrap justify-center items-center text-center gap-x-2 gap-y-4 sm:gap-x-4">
+                        <div>
+                            <div id="years" class="text-3xl font-bold text-gray-900">0</div>
+                            <div class="text-xs text-gray-500 uppercase">Years</div>
+                        </div>
+                        <div class="text-3xl font-semibold text-gray-400">:</div>
+                        <div>
+                            <div id="months" class="text-3xl font-bold text-gray-900">0</div>
+                            <div class="text-xs text-gray-500 uppercase">Months</div>
+                        </div>
+                        <div class="text-3xl font-semibold text-gray-400">:</div>
+                        <div>
+                            <div id="days" class="text-3xl font-bold text-gray-900">0</div>
+                            <div class="text-xs text-gray-500 uppercase">Days</div>
+                        </div>
+                        <div class="hidden sm:block text-3xl font-semibold text-gray-400">:</div>
+                        <div>
+                            <div id="hours" class="text-3xl font-bold text-gray-900">00</div>
+                            <div class="text-xs text-gray-500 uppercase">Hours</div>
+                        </div>
+                        <div class="text-3xl font-semibold text-gray-400">:</div>
+                        <div>
+                            <div id="minutes" class="text-3xl font-bold text-gray-900">00</div>
+                            <div class="text-xs text-gray-500 uppercase">Minutes</div>
+                        </div>
+                        <div class="text-3xl font-semibold text-gray-400">:</div>
+                        <div>
+                            <div id="seconds" class="text-3xl font-bold text-gray-900">00</div>
+                            <div class="text-xs text-gray-500 uppercase">Seconds</div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <!-- NEW: Testimonials Section -->
@@ -858,6 +893,61 @@
             }
         });
         
+        // Live Clock for Learning Journey
+        const birthDate = new Date('2005-10-01T00:00:00');
+        const yearsElem = document.getElementById('years');
+        const monthsElem = document.getElementById('months');
+        const daysElem = document.getElementById('days');
+        const hoursElem = document.getElementById('hours');
+        const minutesElem = document.getElementById('minutes');
+        const secondsElem = document.getElementById('seconds');
+
+        function updateAgeClock() {
+            const now = new Date();
+            
+            let years = now.getFullYear() - birthDate.getFullYear();
+            let months = now.getMonth() - birthDate.getMonth();
+            let days = now.getDate() - birthDate.getDate();
+            let hours = now.getHours() - birthDate.getHours();
+            let minutes = now.getMinutes() - birthDate.getMinutes();
+            let seconds = now.getSeconds() - birthDate.getSeconds();
+
+            if (seconds < 0) {
+                seconds += 60;
+                minutes--;
+            }
+            if (minutes < 0) {
+                minutes += 60;
+                hours--;
+            }
+            if (hours < 0) {
+                hours += 24;
+                days--;
+            }
+            if (days < 0) {
+                const daysInLastMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+                days += daysInLastMonth;
+                months--;
+            }
+            if (months < 0) {
+                months += 12;
+                years--;
+            }
+
+            yearsElem.textContent = years;
+            monthsElem.textContent = months;
+            daysElem.textContent = days;
+            hoursElem.textContent = String(hours).padStart(2, '0');
+            minutesElem.textContent = String(minutes).padStart(2, '0');
+            secondsElem.textContent = String(seconds).padStart(2, '0');
+        }
+
+        // Update the clock every second
+        setInterval(updateAgeClock, 1000);
+        // Initial call to display immediately
+        updateAgeClock();
     </script>
 </body>
 </html>
+
+
