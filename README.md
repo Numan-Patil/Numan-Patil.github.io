@@ -14,7 +14,7 @@ The project is built with **pure HTML, CSS (powered by Tailwind CSS), and vanill
 This portfolio is packed with custom-built interactive elements:
 
 ### 🎨 Modern & Playful UI  
-- A clean, responsive layout with a unique, chunky design aesthetic inspired by *bento layouts*, featuring bold borders and shadows.
+- A clean, responsive layout with a unique, chunky design aesthetic inspired by *neobrutalism* and *bento layouts*, featuring bold borders and shadows.
 
 ### 📱 Fully Responsive Design  
 - The layout fluidly adapts to all screen sizes, from mobile phones to widescreen desktops, with a mobile-first approach.
