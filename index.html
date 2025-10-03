@@ -277,6 +277,21 @@
             background-color: #1f2937; /* Darker on hover */
         }
 
+        /* NEW: Highlighter Animation for Hover Text */
+        .highlight-on-hover {
+            background-image: linear-gradient(to bottom, transparent 30%, #fef9c3 30%, #fef9c3 85%, transparent 85%);
+            background-size: 0% 100%;
+            background-repeat: no-repeat;
+            background-position: left;
+            transition: background-size 0.7s cubic-bezier(.6,0,.4,1);
+        }
+
+        .swipe-container:hover .highlight-on-hover,
+        .swipe-container-vertical:hover .highlight-on-hover {
+            background-size: 100% 100%;
+            transition-delay: 0.4s; /* Start after the swipe animation */
+        }
+
     </style>
 </head>
 <body class="p-4 md:p-8">
@@ -372,7 +387,7 @@
                             </div>
                             <div class="swipe-text-hover">
                                 <p class="text-gray-700 leading-relaxed italic">
-                                    Basically, I tell computers what to do, and sometimes they listen. Fueled by coffee and a borderline-unhealthy obsession with clean code. I collect certifications like Pokémon cards and believe that with enough <code>print</code> statements, I can solve any problem.
+                                    <span class="highlight-on-hover">Basically, I tell computers what to do, and sometimes they listen. Fueled by coffee and a borderline-unhealthy obsession with clean code. I collect certifications like Pokémon cards and believe that with enough <code>print</code> statements, I can solve any problem.</span>
                                 </p>
                             </div>
                         </div>
@@ -571,7 +586,7 @@
                             </div>
                         </div>
 
-                          <!-- Accordion Item 3 -->
+                         <!-- Accordion Item 3 -->
                         <div class="accordion-item">
                            <button class="accordion-button w-full flex justify-between items-center text-left p-4 focus:outline-none hover:bg-gray-100">
                                 <h5 class="text-lg font-semibold text-gray-800">Project Management, Design & Business</h5>
@@ -641,7 +656,7 @@
                             <p class="text-gray-600 font-medium">CGPA: 8.5/10</p>
                         </div>
                         <div class="swipe-text-hover">
-                           <p class="text-gray-700 italic text-center">“Survived 4 years of bugs and assignments. Coffee: 0, Debugging: 100.”</p>
+                           <p class="text-gray-700 italic text-center"><span class="highlight-on-hover">“Survived 4 years of bugs and assignments. Coffee: 0, Debugging: 100.”</span></p>
                         </div>
                     </div>
                      <div class="card rounded-lg swipe-container">
@@ -652,7 +667,7 @@
                             <p class="text-gray-600 font-medium">Percentage: 70%</p>
                         </div>
                          <div class="swipe-text-hover">
-                            <p class="text-gray-700 italic">“Learned that math has trust issues.”</p>
+                            <p class="text-gray-700 italic"><span class="highlight-on-hover">“Learned that math has trust issues.”</span></p>
                         </div>
                     </div>
                      <div class="card rounded-lg swipe-container">
@@ -663,7 +678,7 @@
                             <p class="text-gray-600 font-medium">Percentage: 91%</p>
                         </div>
                          <div class="swipe-text-hover">
-                            <p class="text-gray-700 italic">“Apparently peaked here.”</p>
+                            <p class="text-gray-700 italic"><span class="highlight-on-hover">“Apparently peaked here.”</span></p>
                         </div>
                     </div>
                  </div>
@@ -717,7 +732,7 @@
                             </div>
                          </div>
                          <div class="swipe-text-hover bg-white">
-                            <p class="text-gray-700 italic">"Okay fine, he forced me to say it… but I can't deny he's a good person. After all, he's my brother."</p>
+                            <p class="text-gray-700 italic"><span class="highlight-on-hover">"Okay fine, he forced me to say it… but I can't deny he's a good person. After all, he's my brother."</span></p>
                          </div>
                     </div>
                     <div class="card rounded-lg swipe-container-vertical">
@@ -729,7 +744,7 @@
                             </div>
                          </div>
                          <div class="swipe-text-hover bg-white">
-                            <p class="text-gray-700 italic">"I said this in exchange for a shawarma. Thanks, Numan!"</p>
+                            <p class="text-gray-700 italic"><span class="highlight-on-hover">"I said this in exchange for a shawarma. Thanks, Numan!"</span></p>
                          </div>
                     </div>
                     <div class="card rounded-lg swipe-container-vertical md:col-span-2 bg-yellow-100 border-black-300">
@@ -741,7 +756,7 @@
                             </div>
                          </div>
                          <div class="swipe-text-hover bg-white">
-                            <p class="text-gray-700 italic">"Quack."</p>
+                            <p class="text-gray-700 italic"><span class="highlight-on-hover">"Quack."</span></p>
                          </div>
                     </div>
                 </div>
