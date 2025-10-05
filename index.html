@@ -291,6 +291,65 @@
             background-size: 100% 100%;
             transition-delay: 0.4s; /* Start after the swipe animation */
         }
+        
+        /* Hire Me Game Styles */
+        #game-container {
+            position: relative;
+            min-height: 100px;
+        }
+        #no-btn {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        /* Hire Me CTA */
+        #hire-me-cta {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            display: none; /* Controlled by JS */
+        }
+
+        #hire-me-cta.visible {
+            opacity: 1;
+            transform: translateY(0);
+            display: flex;
+        }
+
+        /* Game Modal Buttons */
+        .game-btn {
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            border: 2px solid #111827;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 4px 4px 0px #111827;
+            cursor: pointer;
+        }
+        .game-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #111827;
+        }
+        .game-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px #111827;
+        }
+
+        .yes-btn {
+            background-color: #4ade80; /* Green 400 */
+            color: #111827;
+            z-index: 10;
+        }
+        .yes-btn:hover {
+            background-color: #22c55e; /* Green 500 */
+        }
+
+        .no-btn {
+            background-color: #f87171; /* Red 400 */
+            color: #111827;
+        }
+        .no-btn:hover {
+            background-color: #ef4444; /* Red 500 */
+        }
 
     </style>
 </head>
@@ -319,7 +378,7 @@
                     About
                 </a>
                 <a href="#" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg text-gray-800" data-target="projects">
-                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
                     Projects
                 </a>
                 <a href="#" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg text-gray-800" data-target="skills">
@@ -327,7 +386,7 @@
                     Skills & Certs
                 </a>
                 <a href="#" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg text-gray-800" data-target="education">
-                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 14l9-5-9-5-9 5 9 5z" /><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222 4 2.222V20M12 12L8 9.778 4 12l4 2.222L12 12zm8 0l-4-2.222-4 2.222 4 2.222 4-2.222z" /></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 14l9-5-9-5-9 5 9 5z" /><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222 4 2.222V20M12 12L8 9.778 4 12l4 2.222L12 12zm8 0l-4-2.222-4 2.222 4 2.222 4-2.222z" /></svg>
                     Education
                 </a>
                 <a href="#" class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg text-gray-800" data-target="testimonials">
@@ -425,9 +484,9 @@
                              <div class="flex flex-wrap gap-2">
                                 <span class="tag !bg-yellow-100 !text-yellow-800 !border-yellow-300 font-mono text-xs px-2 py-1 rounded">Python</span>
                                 <span class="tag !bg-gray-200 !text-gray-800 !border-gray-400 font-mono text-xs px-2 py-1 rounded">Flask</span>
-                                 <span class="tag !bg-red-100 !text-red-800 !border-red-300 font-mono text-xs px-2 py-1 rounded">HTML</span>
-                                 <span class="tag !bg-sky-100 !text-sky-800 !border-sky-300 font-mono text-xs px-2 py-1 rounded">CSS</span>
-                                 <span class="tag !bg-amber-100 !text-amber-800 !border-amber-300 font-mono text-xs px-2 py-1 rounded">JS</span>
+                                <span class="tag !bg-red-100 !text-red-800 !border-red-300 font-mono text-xs px-2 py-1 rounded">HTML</span>
+                                <span class="tag !bg-sky-100 !text-sky-800 !border-sky-300 font-mono text-xs px-2 py-1 rounded">CSS</span>
+                                <span class="tag !bg-amber-100 !text-amber-800 !border-amber-300 font-mono text-xs px-2 py-1 rounded">JS</span>
                             </div>
                         </div>
                         <div class="mt-6">
@@ -760,6 +819,17 @@
                          </div>
                     </div>
                 </div>
+                
+                <!-- Hire Me Game CTA -->
+                <div id="hire-me-cta" class="mt-12 p-6 bg-amber-100 border-2 border-gray-900 rounded-lg flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left card">
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-900 pixel-font">Ready to make a great hire?</h4>
+                        <p class="text-gray-700 mt-1">Take a leap of faith. The best candidate might be just one click away.</p>
+                    </div>
+                    <button id="play-game-btn" class="github-btn bg-gray-800 text-white font-semibold px-6 py-3 rounded-lg flex-shrink-0">
+                        Play the Hire-Me Game
+                    </button>
+                </div>
             </section>
         </main>
     </div>
@@ -791,13 +861,51 @@
             </div>
         </div>
     </div>
+    
+    <!-- Hire Me Game Modal -->
+    <div id="hire-me-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 hidden z-50 transition-opacity duration-300">
+        <div class="bg-[#FEF9EF] rounded-lg border-2 border-gray-900 max-w-lg w-full modal-shadow overflow-hidden" id="hire-modal-content">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center p-4 bg-[#A2D2FF] border-b-2 border-gray-900">
+                <h3 class="text-xl font-bold text-gray-900 pixel-font">The Final Interview Question</h3>
+                <button id="close-hire-modal-btn-top" class="text-gray-700 hover:text-gray-900">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="p-8 relative text-center">
+                <div id="game-view">
+                     <h3 id="hire-question" class="text-2xl font-bold text-gray-900 mb-8 pixel-font">Will you hire me?</h3>
+                     <div id="game-container" class="flex items-center justify-center gap-4">
+                         <button id="yes-btn" class="game-btn yes-btn">
+                             Yes!
+                         </button>
+                         <button id="no-btn" class="game-btn no-btn">
+                             No
+                         </button>
+                     </div>
+                </div>
+
+                <div id="success-message" class="hidden">
+                     <svg class="mx-auto h-16 w-16 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                     </svg>
+                     <h3 class="text-3xl font-bold text-green-600 mt-4 mb-2 pixel-font">Excellent Choice!</h3>
+                     <p class="text-gray-700 mb-6">You've made a fantastic decision. Let's build something amazing together. Please get in touch!</p>
+                     <a href="mailto:numan.n.patil@gmail.com" class="github-btn inline-flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-md font-semibold text-sm">
+                        <span>Contact Me</span>
+                     </a>
+                     <button id="close-hire-modal-btn-bottom" class="mt-4 block mx-auto text-sm text-gray-500 hover:underline">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         const menuToggle = document.getElementById('menu-toggle');
         const navMenu = document.getElementById('nav-menu');
         const openIcon = document.getElementById('menu-open-icon');
         const closeIcon = document.getElementById('menu-close-icon');
-
         const navLinks = navMenu.querySelectorAll('.nav-link');
         const sections = document.querySelectorAll('.section-content');
 
@@ -807,26 +915,35 @@
             closeIcon.classList.toggle('hidden');
         });
 
+        // Navigation and Section Visibility
+        const hireMeCta = document.getElementById('hire-me-cta');
+
         navMenu.addEventListener('click', (e) => {
-            // Use .closest('a') to handle clicks on icons inside the link
             const link = e.target.closest('a.nav-link');
             if (!link) return;
             
             e.preventDefault();
             const targetId = link.dataset.target;
 
-            // Update active link
-            navLinks.forEach(navLink => {
-                navLink.classList.remove('active');
-            });
+            navLinks.forEach(navLink => navLink.classList.remove('active'));
             link.classList.add('active');
 
-            // Update active section
+            let isTestimonialsActive = false;
             sections.forEach(section => {
-                section.classList.toggle('active', section.id === targetId);
+                const isActive = section.id === targetId;
+                section.classList.toggle('active', isActive);
+                if (section.id === 'testimonials' && isActive) {
+                    isTestimonialsActive = true;
+                }
             });
+
+            // Show/Hide Hire Me CTA
+            if (isTestimonialsActive) {
+                setTimeout(() => hireMeCta.classList.add('visible'), 100); // Small delay for animation
+            } else {
+                hireMeCta.classList.remove('visible');
+            }
             
-            // Hide menu on mobile after click
             if (window.innerWidth < 768) {
                 navMenu.classList.add('hidden');
                 openIcon.classList.remove('hidden');
@@ -834,23 +951,24 @@
             }
         });
 
+
         // Heart Like Animation on Profile Picture
         const profilePicContainer = document.getElementById('profile-pic-container');
         const likeHeart = document.getElementById('like-heart');
 
         profilePicContainer.addEventListener('dblclick', () => {
             likeHeart.classList.add('show-heart');
-
-            // Remove the class after the animation completes
             setTimeout(() => {
                 likeHeart.classList.remove('show-heart');
-            }, 1000); // Duration matches the CSS animation
+            }, 1000);
         });
 
         // Confetti Animation
         const confettiColors = ['#fde68a', '#fca5a5', '#86efac', '#93c5fd', '#c4b5fd', '#f0abfc'];
         function createConfetti(container) {
-            if (getComputedStyle(container).position === 'static') {
+            // Ensure the container can hold absolutely positioned elements
+            const currentPosition = getComputedStyle(container).position;
+            if (currentPosition === 'static') {
                 container.style.position = 'relative';
             }
             container.style.overflow = 'hidden';
@@ -866,12 +984,13 @@
                 container.appendChild(confettiPiece);
                 
                 confettiPiece.addEventListener('animationend', () => {
-                    confettiPiece.remove();
+                    if (confettiPiece.parentElement) {
+                        confettiPiece.remove();
+                    }
                 });
             }
         }
 
-        // Apply confetti to education cards
         const educationCards = document.querySelectorAll('#education .card');
         educationCards.forEach(card => {
             card.addEventListener('mousedown', () => createConfetti(card));
@@ -884,7 +1003,7 @@
                 const content = button.nextElementSibling;
                 const isAlreadyActive = button.classList.contains('active');
                 accordionButtons.forEach(btn => {
-                    if (btn !== button) {
+                    if (btn !== button && btn.classList.contains('active')) {
                         btn.classList.remove('active');
                         btn.nextElementSibling.style.maxHeight = null;
                     }
@@ -910,20 +1029,13 @@
         const addSkillBtn = document.getElementById('add-skill-btn');
         const skillModal = document.getElementById('skill-modal');
         const closeModalBtn = document.getElementById('close-modal-btn');
-        const modalContent = document.getElementById('modal-content');
 
-        addSkillBtn.addEventListener('click', () => {
-            skillModal.classList.remove('hidden');
-        });
-
-        const closeModal = () => {
-            skillModal.classList.add('hidden');
-        };
-
-        closeModalBtn.addEventListener('click', closeModal);
+        addSkillBtn.addEventListener('click', () => skillModal.classList.remove('hidden'));
+        const closeSkillModal = () => skillModal.classList.add('hidden');
+        closeModalBtn.addEventListener('click', closeSkillModal);
         skillModal.addEventListener('click', (e) => {
             if (e.target === skillModal) {
-                closeModal();
+                closeSkillModal();
             }
         });
         
@@ -938,36 +1050,21 @@
 
         function updateAgeClock() {
             const now = new Date();
-            
             let years = now.getFullYear() - birthDate.getFullYear();
             let months = now.getMonth() - birthDate.getMonth();
             let days = now.getDate() - birthDate.getDate();
             let hours = now.getHours() - birthDate.getHours();
             let minutes = now.getMinutes() - birthDate.getMinutes();
             let seconds = now.getSeconds() - birthDate.getSeconds();
-
-            if (seconds < 0) {
-                seconds += 60;
-                minutes--;
-            }
-            if (minutes < 0) {
-                minutes += 60;
-                hours--;
-            }
-            if (hours < 0) {
-                hours += 24;
-                days--;
-            }
+            if (seconds < 0) { seconds += 60; minutes--; }
+            if (minutes < 0) { minutes += 60; hours--; }
+            if (hours < 0) { hours += 24; days--; }
             if (days < 0) {
                 const daysInLastMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
                 days += daysInLastMonth;
                 months--;
             }
-            if (months < 0) {
-                months += 12;
-                years--;
-            }
-
+            if (months < 0) { months += 12; years--; }
             yearsElem.textContent = years;
             monthsElem.textContent = months;
             daysElem.textContent = days;
@@ -975,11 +1072,77 @@
             minutesElem.textContent = String(minutes).padStart(2, '0');
             secondsElem.textContent = String(seconds).padStart(2, '0');
         }
-
-        // Update the clock every second
         setInterval(updateAgeClock, 1000);
-        // Initial call to display immediately
         updateAgeClock();
+        
+        // --- Hire Me Game Logic ---
+        const playGameBtn = document.getElementById('play-game-btn');
+        const hireMeModal = document.getElementById('hire-me-modal');
+        const hireModalContent = document.getElementById('hire-modal-content');
+        const closeHireModalBtnTop = document.getElementById('close-hire-modal-btn-top');
+        const closeHireModalBtnBottom = document.getElementById('close-hire-modal-btn-bottom');
+        const yesBtn = document.getElementById('yes-btn');
+        const noBtn = document.getElementById('no-btn');
+        const hireQuestion = document.getElementById('hire-question');
+        const gameView = document.getElementById('game-view');
+        const successMessage = document.getElementById('success-message');
+        const gameContainer = document.getElementById('game-container');
+
+        const noQuestions = [
+            "Are you absolutely sure?", "But think of the clean code!", "My problem-solving skills are top-notch!",
+            "Really? My rubber duck thinks you should.", "Is that your final answer?", "Okay, but what if I bring donuts?",
+            "This 'No' button is getting harder to click...", "You're persistent! I like that in a colleague.",
+            "I'm a fast learner, I promise!", "Just click 'Yes'. It's easier for both of us.",
+        ];
+        let questionIndex = 0;
+        let yesButtonScale = 1;
+
+        const openHireMeModal = () => {
+            questionIndex = 0;
+            yesButtonScale = 1;
+            hireQuestion.textContent = "Will you hire me?";
+            yesBtn.style.transform = `scale(1)`;
+            noBtn.style.position = '';
+            noBtn.style.top = '';
+            noBtn.style.left = '';
+            gameView.classList.remove('hidden');
+            successMessage.classList.add('hidden');
+            hireMeModal.classList.remove('hidden');
+        };
+
+        const closeHireMeModal = () => hireMeModal.classList.add('hidden');
+
+        const handleNoClick = () => {
+            questionIndex = (questionIndex + 1) % noQuestions.length;
+            hireQuestion.textContent = noQuestions[questionIndex];
+            yesButtonScale += 0.2;
+            yesBtn.style.transform = `scale(${yesButtonScale})`;
+            noBtn.style.position = 'absolute';
+            const containerRect = gameContainer.getBoundingClientRect();
+            const noBtnRect = noBtn.getBoundingClientRect();
+            const newTop = Math.random() * (containerRect.height - noBtnRect.height);
+            const newLeft = Math.random() * (containerRect.width - noBtnRect.width);
+            noBtn.style.top = `${newTop}px`;
+            noBtn.style.left = `${newLeft}px`;
+        };
+        
+        const handleYesClick = () => {
+            gameView.classList.add('hidden');
+            successMessage.classList.remove('hidden');
+            createConfetti(hireModalContent);
+        };
+
+        playGameBtn.addEventListener('click', openHireMeModal);
+        closeHireModalBtnTop.addEventListener('click', closeHireMeModal);
+        closeHireModalBtnBottom.addEventListener('click', closeHireMeModal);
+        yesBtn.addEventListener('click', handleYesClick);
+        noBtn.addEventListener('mouseover', handleNoClick);
+        noBtn.addEventListener('click', handleNoClick);
+        hireMeModal.addEventListener('click', (e) => {
+            if (e.target === hireMeModal) closeHireMeModal();
+        });
+        
     </script>
 </body>
 </html>
+
