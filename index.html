@@ -279,7 +279,7 @@
 
         /* NEW: Highlighter Animation for Hover Text */
         .highlight-on-hover {
-            background-image: linear-gradient(to bottom, transparent 30%, #FDFFB8 30%, #FDFFB8 85%, transparent 85%);
+            background-image: linear-gradient(to bottom, transparent 30%, #FFD93D 30%, #FFD93D 85%, transparent 85%);
             background-size: 0% 100%;
             background-repeat: no-repeat;
             background-position: left;
@@ -290,6 +290,127 @@
         .swipe-container-vertical:hover .highlight-on-hover {
             background-size: 100% 100%;
             transition-delay: 0.4s; /* Start after the swipe animation */
+        }
+
+        /* Project Tab Styles */
+        .project-tab-btn {
+            transition: color 0.3s ease-in-out;
+            color: #111827;
+        }
+        .project-tab-btn.active {
+            color: white;
+        }
+        .project-tab-pane {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .project-tab-pane.active {
+            display: block;
+        }
+        
+        /* New Stuff Card UI */
+        .stuff-card {
+            background-color: #f8fafc; /* Lighter gray, almost white */
+            border-color: #e2e8f0; /* Softer border */
+            padding: 0; /* Remove padding to let carousel fill */
+        }
+        .stuff-card:hover {
+            border-color: #111827;
+            box-shadow: 6px 6px 0px #111827;
+            transform: translate(-3px, -3px);
+        }
+        .stuff-card-content {
+            padding: 1.5rem;
+        }
+
+        /* Carousel Styles */
+        .stuff-carousel .carousel-prev,
+        .stuff-carousel .carousel-next {
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.3s ease, background-color 0.3s ease;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .stuff-carousel:hover .carousel-prev,
+        .stuff-carousel:hover .carousel-next {
+            opacity: 1;
+        }
+        .stuff-carousel .carousel-prev:hover,
+        .stuff-carousel .carousel-next:hover {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        .carousel-slide {
+            aspect-ratio: 16 / 9; /* Maintain a consistent aspect ratio for media */
+        }
+
+        /* Pagination Dots */
+        .carousel-dots {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+        .carousel-dots .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .carousel-dots .dot:hover {
+            transform: scale(1.2);
+        }
+        .carousel-dots .dot.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+
+        /* Fullscreen Modal Styles */
+        #fullscreen-modal.active {
+            display: flex;
+            animation: fadeInModal 0.3s ease;
+        }
+        #fullscreen-content img,
+        #fullscreen-content video {
+            max-height: 90vh;
+            max-width: 90vw;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        @keyframes fadeInModal {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Drag and Drop styles */
+        .tag {
+            transition: transform 0.25s ease;
+            will-change: transform;
+        }
+        .tag[draggable="true"] {
+            user-select: none;
+            -webkit-user-select: none;
+            cursor: grab;
+        }
+        .tag.dragging {
+            opacity: 0.6;
+            cursor: grabbing;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.25);
+            transform: scale(1.05);
+            position: relative;
+            z-index: 100;
+        }
+        .tag.shuffling {
+            z-index: 50;
+        }
+        .skills-container {
+            padding-bottom: 1rem;
+            min-height: 60px;
         }
 
     </style>
@@ -397,100 +518,202 @@
 
             <!-- Projects Section -->
             <section id="projects" class="section-content">
-                <h3 class="text-3xl font-bold mb-6 scramble-effect" data-value="Projects">Projects</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Project Card 1 -->
-                    <div class="card rounded-lg p-6 h-full">
-                        <div class="flex-grow">
-                            <h4 class="font-bold text-xl mb-2">Undrstanding AI</h4>
-                            <p class="text-gray-600 mb-4 text-sm">Built an interactive coding assistant that guides users through programming tasks without providing direct code. Utilized a two-mode system ("Learn" or "Code") for mentorship and support.</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="tag !bg-blue-100 !text-blue-800 !border-blue-300 font-mono text-xs px-2 py-1 rounded">FastAPI</span>
-                                <span class="tag !bg-yellow-100 !text-yellow-800 !border-yellow-300 font-mono text-xs px-2 py-1 rounded">Python</span>
-                                <span class="tag !bg-purple-100 !text-purple-800 !border-purple-300 font-mono text-xs px-2 py-1 rounded">AI/ML</span>
-                            </div>
-                        </div>
-                        <div class="mt-6">
-                            <a href="https://github.com/Numan-Patil/UndrstandingCode.git" target="_blank" rel="noopener noreferrer" class="github-btn inline-flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-md font-semibold text-sm">
-                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                                View on GitHub
-                            </a>
-                        </div>
-                    </div>
-                     <!-- Project Card 2 -->
-                     <div class="card rounded-lg p-6 h-full">
-                        <div class="flex-grow">
-                            <h4 class="font-bold text-xl mb-2">CareerCraft AI</h4>
-                            <p class="text-gray-600 mb-4 text-sm">Developed an AI-powered career guidance platform offering personalized recommendations. Awarded <b>Best UI/UX Prize</b> at Hackvyuha 2025.</p>
-                             <div class="flex flex-wrap gap-2">
-                                 <span class="tag !bg-yellow-100 !text-yellow-800 !border-yellow-300 font-mono text-xs px-2 py-1 rounded">Python</span>
-                                 <span class="tag !bg-gray-200 !text-gray-800 !border-gray-400 font-mono text-xs px-2 py-1 rounded">Flask</span>
-                                  <span class="tag !bg-red-100 !text-red-800 !border-red-300 font-mono text-xs px-2 py-1 rounded">HTML</span>
-                                  <span class="tag !bg-sky-100 !text-sky-800 !border-sky-300 font-mono text-xs px-2 py-1 rounded">CSS</span>
-                                  <span class="tag !bg-amber-100 !text-amber-800 !border-amber-300 font-mono text-xs px-2 py-1 rounded">JS</span>
-                            </div>
-                        </div>
-                        <div class="mt-6">
-                            <a href="https://github.com/Numan-Patil/CareerCraftAi.git" target="_blank" rel="noopener noreferrer" class="github-btn inline-flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-md font-semibold text-sm">
-                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                                View on GitHub
-                            </a>
-                        </div>
-                    </div>
-                     <!-- Project Card 3 -->
-                     <div class="card rounded-lg p-6 h-full">
-                        <div class="flex-grow">
-                            <h4 class="font-bold text-xl mb-2">Library Management System</h4>
-                            <p class="text-gray-600 mb-4 text-sm">Developed a comprehensive application to manage library operations. Won <b>Second Prize</b> in College Mini Project Competition.</p>
-                             <div class="flex flex-wrap gap-2">
-                                 <span class="tag !bg-red-100 !text-red-800 !border-red-300 font-mono text-xs px-2 py-1 rounded">HTML/CSS/JS</span>
-                                 <span class="tag !bg-indigo-100 !text-indigo-800 !border-indigo-300 font-mono text-xs px-2 py-1 rounded">PHP</span>
-                                 <span class="tag !bg-orange-100 !text-orange-800 !border-orange-300 font-mono text-xs px-2 py-1 rounded">MySQL</span>
-                            </div>
-                        </div>
-                        <div class="mt-6">
-                            <a href="https://github.com/Numan-Patil/MiniProject-LibraryManagementSystem.git" target="_blank" rel="noopener noreferrer" class="github-btn inline-flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-md font-semibold text-sm">
-                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                                View on GitHub
-                            </a>
-                        </div>
-                    </div>
-                     <!-- Project Card 4 -->
-                     <div class="card rounded-lg p-6 h-full">
-                        <div class="flex-grow">
-                            <h4 class="font-bold text-xl mb-2">Insurance Document Analyser</h4>
-                            <p class="text-gray-600 mb-4 text-sm">An LLM-powered platform that processes insurance documents and answers multilingual queries with structured outputs via a modern chat interface.</p>
-                             <div class="flex flex-wrap gap-2">
-                                 <span class="tag !bg-yellow-100 !text-yellow-800 !border-yellow-300 font-mono text-xs px-2 py-1 rounded">Python</span>
-                                 <span class="tag !bg-gray-200 !text-gray-800 !border-gray-400 font-mono text-xs px-2 py-1 rounded">Flask</span>
-                                 <span class="tag !bg-red-100 !text-red-800 !border-red-300 font-mono text-xs px-2 py-1 rounded">HTML/CSS/JS</span>
-                            </div>
-                        </div>
-                        <div class="mt-6">
-                            <a href="https://github.com/Numan-Patil/Insurance-Document-Analyzer.git" target="_blank" rel="noopener noreferrer" class="github-btn inline-flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-md font-semibold text-sm">
-                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                                View on GitHub
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Project Card 5 -->
-                    <div class="card rounded-lg p-6 h-full">
-                        <div class="flex-grow">
-                            <h4 class="font-bold text-xl mb-2">Voice Assistant Chatbot</h4>
-                            <p class="text-gray-600 mb-4 text-sm">A voice-based chatbot designed implementing Python to assist users with various tasks and queries, providing a hands-free interactive experience.</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="tag !bg-yellow-100 !text-yellow-800 !border-yellow-300 font-mono text-xs px-2 py-1 rounded">Python</span>
-                            </div>
-                        </div>
-                        <div class="mt-6">
-                            <a href="https://github.com/Numan-Patil/Project-Athena-Voice-Assistant.git" target="_blank" rel="noopener noreferrer" class="github-btn inline-flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-md font-semibold text-sm">
-                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                                View on GitHub
-                            </a>
-                        </div>
+                <h3 class="text-3xl font-bold mb-6 scramble-effect" data-value="My Work">My Work</h3>
+                
+                <!-- Project Tabs -->
+                <div class="flex justify-center mb-8">
+                    <div id="project-tabs-container" class="relative inline-flex items-center rounded-full border-2 border-gray-900 p-1 bg-gray-100">
+                        <div id="project-pill-bg" class="absolute top-1 bottom-1 bg-gray-900 rounded-full transition-all duration-300 ease-in-out"></div>
+                        <button class="project-tab-btn active relative z-10 px-6 py-2 text-sm font-semibold focus:outline-none" data-target="projects-grid">Projects</button>
+                        <button class="project-tab-btn relative z-10 px-6 py-2 text-sm font-semibold focus:outline-none" data-target="stuff-grid">Stuff</button>
                     </div>
                 </div>
-                <p class="text-center text-xs text-gray-500 mt-8 pt-4 border-t border-gray-200 italic">"When I wrote these codes, only I and God knew what they were. Now, only God knows!"</p>
+
+                <!-- Projects Grid -->
+                <div id="projects-grid" class="project-tab-pane active">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Project Card 1 -->
+                        <div class="card rounded-lg p-6 h-full">
+                            <div class="flex-grow">
+                                <h4 class="font-bold text-xl mb-2">Undrstanding AI</h4>
+                                <p class="text-gray-600 mb-4 text-sm">Built an interactive coding assistant that guides users through programming tasks without providing direct code. Utilized a two-mode system ("Learn" or "Code") for mentorship and support.</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="tag !bg-blue-100 !text-blue-800 !border-blue-300 font-mono text-xs px-2 py-1 rounded">FastAPI</span>
+                                    <span class="tag !bg-yellow-100 !text-yellow-800 !border-yellow-300 font-mono text-xs px-2 py-1 rounded">Python</span>
+                                    <span class="tag !bg-purple-100 !text-purple-800 !border-purple-300 font-mono text-xs px-2 py-1 rounded">AI/ML</span>
+                                </div>
+                            </div>
+                            <div class="mt-6">
+                                <a href="https://github.com/Numan-Patil/UndrstandingCode.git" target="_blank" rel="noopener noreferrer" class="github-btn inline-flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-md font-semibold text-sm">
+                                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                                    View on GitHub
+                                </a>
+                            </div>
+                        </div>
+                         <!-- Project Card 2 -->
+                         <div class="card rounded-lg p-6 h-full">
+                            <div class="flex-grow">
+                                <h4 class="font-bold text-xl mb-2">CareerCraft AI</h4>
+                                <p class="text-gray-600 mb-4 text-sm">Developed an AI-powered career guidance platform offering personalized recommendations. Awarded <b>Best UI/UX Prize</b> at Hackvyuha 2025.</p>
+                                 <div class="flex flex-wrap gap-2">
+                                    <span class="tag !bg-yellow-100 !text-yellow-800 !border-yellow-300 font-mono text-xs px-2 py-1 rounded">Python</span>
+                                    <span class="tag !bg-gray-200 !text-gray-800 !border-gray-400 font-mono text-xs px-2 py-1 rounded">Flask</span>
+                                     <span class="tag !bg-red-100 !text-red-800 !border-red-300 font-mono text-xs px-2 py-1 rounded">HTML</span>
+                                     <span class="tag !bg-sky-100 !text-sky-800 !border-sky-300 font-mono text-xs px-2 py-1 rounded">CSS</span>
+                                     <span class="tag !bg-amber-100 !text-amber-800 !border-amber-300 font-mono text-xs px-2 py-1 rounded">JS</span>
+                                </div>
+                            </div>
+                            <div class="mt-6">
+                                <a href="https://github.com/Numan-Patil/CareerCraftAi.git" target="_blank" rel="noopener noreferrer" class="github-btn inline-flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-md font-semibold text-sm">
+                                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                                    View on GitHub
+                                </a>
+                            </div>
+                        </div>
+                         <!-- Project Card 3 -->
+                         <div class="card rounded-lg p-6 h-full">
+                            <div class="flex-grow">
+                                <h4 class="font-bold text-xl mb-2">Library Management System</h4>
+                                <p class="text-gray-600 mb-4 text-sm">Developed a comprehensive application to manage library operations. Won <b>Second Prize</b> in College Mini Project Competition.</p>
+                                 <div class="flex flex-wrap gap-2">
+                                    <span class="tag !bg-red-100 !text-red-800 !border-red-300 font-mono text-xs px-2 py-1 rounded">HTML/CSS/JS</span>
+                                    <span class="tag !bg-indigo-100 !text-indigo-800 !border-indigo-300 font-mono text-xs px-2 py-1 rounded">PHP</span>
+                                    <span class="tag !bg-orange-100 !text-orange-800 !border-orange-300 font-mono text-xs px-2 py-1 rounded">MySQL</span>
+                                </div>
+                            </div>
+                            <div class="mt-6">
+                                <a href="https://github.com/Numan-Patil/MiniProject-LibraryManagementSystem.git" target="_blank" rel="noopener noreferrer" class="github-btn inline-flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-md font-semibold text-sm">
+                                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                                    View on GitHub
+                                </a>
+                            </div>
+                        </div>
+                         <!-- Project Card 4 -->
+                         <div class="card rounded-lg p-6 h-full">
+                            <div class="flex-grow">
+                                <h4 class="font-bold text-xl mb-2">Insurance Document Analyser</h4>
+                                <p class="text-gray-600 mb-4 text-sm">An LLM-powered platform that processes insurance documents and answers multilingual queries with structured outputs via a modern chat interface.</p>
+                                 <div class="flex flex-wrap gap-2">
+                                    <span class="tag !bg-yellow-100 !text-yellow-800 !border-yellow-300 font-mono text-xs px-2 py-1 rounded">Python</span>
+                                    <span class="tag !bg-gray-200 !text-gray-800 !border-gray-400 font-mono text-xs px-2 py-1 rounded">Flask</span>
+                                    <span class="tag !bg-red-100 !text-red-800 !border-red-300 font-mono text-xs px-2 py-1 rounded">HTML/CSS/JS</span>
+                                </div>
+                            </div>
+                            <div class="mt-6">
+                                <a href="https://github.com/Numan-Patil/Insurance-Document-Analyzer.git" target="_blank" rel="noopener noreferrer" class="github-btn inline-flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-md font-semibold text-sm">
+                                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                                    View on GitHub
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Project Card 5 -->
+                        <div class="card rounded-lg p-6 h-full">
+                            <div class="flex-grow">
+                                <h4 class="font-bold text-xl mb-2">Voice Assistant Chatbot</h4>
+                                <p class="text-gray-600 mb-4 text-sm">A voice-based chatbot designed implementing Python to assist users with various tasks and queries, providing a hands-free interactive experience.</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="tag !bg-yellow-100 !text-yellow-800 !border-yellow-300 font-mono text-xs px-2 py-1 rounded">Python</span>
+                                </div>
+                            </div>
+                            <div class="mt-6">
+                                <a href="https://github.com/Numan-Patil/Project-Athena-Voice-Assistant.git" target="_blank" rel="noopener noreferrer" class="github-btn inline-flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-md font-semibold text-sm">
+                                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                                    View on GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-center text-xs text-gray-500 mt-8 pt-4 border-t border-gray-200 italic">"When I wrote these codes, only I and God knew what they were. Now, only God knows!"</p>
+                </div>
+                <!-- Stuff Grid -->
+                <div id="stuff-grid" class="project-tab-pane">
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Stuff Card 1 -->
+                        <div class="card stuff-card rounded-lg h-full">
+                             <!-- Carousel for multiple images/videos -->
+                            <div class="stuff-carousel relative rounded-t-md overflow-hidden bg-gray-100">
+                                <div class="carousel-track flex transition-transform duration-300 ease-in-out">
+                                    <!-- Slide 1: Image -->
+                                    <div class="carousel-slide flex-shrink-0 w-full cursor-pointer">
+                                        <img src="https://placehold.co/600x400/A2D2FF/111827?text=UI+Shot+1" alt="Social Media App Concept - Shot 1" class="w-full h-full object-cover">
+                                    </div>
+                                    <!-- Slide 2: Image -->
+                                    <div class="carousel-slide flex-shrink-0 w-full cursor-pointer">
+                                        <img src="https://placehold.co/600x400/A2D2FF/111827?text=UI+Shot+2" alt="Social Media App Concept - Shot 2" class="w-full h-full object-cover">
+                                    </div>
+                                    <!-- Slide 3: Video Placeholder -->
+                                    <div class="carousel-slide relative flex-shrink-0 w-full bg-black flex items-center justify-center cursor-pointer">
+                                         <!-- NOTE: A real <video> tag would go here. -->
+                                         <img src="https://placehold.co/600x400/000000/ffffff?text=Video+Preview" alt="Video Preview" class="w-full h-full object-cover opacity-50">
+                                         <div class="absolute text-white pointer-events-none">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                                            </svg>
+                                         </div>
+                                    </div>
+                                </div>
+                                <!-- Navigation -->
+                                <button class="carousel-prev absolute top-1/2 left-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full focus:outline-none">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                </button>
+                                <button class="carousel-next absolute top-1/2 right-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full focus:outline-none">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                </button>
+                                <div class="carousel-dots"></div>
+                            </div>
+                            <div class="stuff-card-content flex flex-col flex-grow">
+                                <h4 class="font-bold text-xl mb-2">Social Media App Concept</h4>
+                                <p class="text-gray-600 mb-4 text-sm flex-grow">A modern and clean UI/UX concept for a new social media platform focused on real-world connections.</p>
+                                <div class="flex flex-wrap gap-2 mt-auto">
+                                     <span class="tag !bg-pink-100 !text-pink-800 !border-pink-300 font-mono text-xs px-2 py-1 rounded">Figma</span>
+                                     <span class="tag !bg-purple-100 !text-purple-800 !border-purple-300 font-mono text-xs px-2 py-1 rounded">UI/UX</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Stuff Card 2 -->
+                        <div class="card stuff-card rounded-lg h-full">
+                            <div class="stuff-carousel relative rounded-t-md overflow-hidden bg-gray-100">
+                                <div class="carousel-track flex transition-transform duration-300 ease-in-out">
+                                    <div class="carousel-slide flex-shrink-0 w-full cursor-pointer"><img src="https://placehold.co/600x400/F3F0D7/111827?text=Logo" alt="Tech Startup Branding - Logo" class="w-full h-full object-cover"></div>
+                                    <div class="carousel-slide flex-shrink-0 w-full cursor-pointer"><img src="https://placehold.co/600x400/F3F0D7/111827?text=Color+Palette" alt="Tech Startup Branding - Colors" class="w-full h-full object-cover"></div>
+                                </div>
+                                <button class="carousel-prev absolute top-1/2 left-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full focus:outline-none"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
+                                <button class="carousel-next absolute top-1/2 right-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full focus:outline-none"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
+                                <div class="carousel-dots"></div>
+                            </div>
+                            <div class="stuff-card-content flex flex-col flex-grow">
+                                <h4 class="font-bold text-xl mb-2">Tech Startup Branding</h4>
+                                <p class="text-gray-600 mb-4 text-sm flex-grow">Complete branding package for a fictional tech startup, including logo, color palette, and typography guidelines.</p>
+                                <div class="flex flex-wrap gap-2 mt-auto">
+                                     <span class="tag !bg-red-100 !text-red-800 !border-red-300 font-mono text-xs px-2 py-1 rounded">Illustrator</span>
+                                     <span class="tag !bg-amber-100 !text-amber-800 !border-amber-300 font-mono text-xs px-2 py-1 rounded">Branding</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Stuff Card 3 -->
+                        <div class="card stuff-card rounded-lg h-full">
+                            <div class="stuff-carousel relative rounded-t-md overflow-hidden bg-gray-100">
+                                <div class="carousel-track flex transition-transform duration-300 ease-in-out">
+                                    <div class="carousel-slide flex-shrink-0 w-full cursor-pointer"><img src="https://placehold.co/600x400/FEF3C7/111827?text=Dashboard+View" alt="Analytics Dashboard" class="w-full h-full object-cover"></div>
+                                    <div class="carousel-slide flex-shrink-0 w-full cursor-pointer"><img src="https://placehold.co/600x400/FEF3C7/111827?text=Chart+Detail" alt="Analytics Dashboard - Chart" class="w-full h-full object-cover"></div>
+                                    <div class="carousel-slide flex-shrink-0 w-full cursor-pointer"><img src="https://placehold.co/600x400/FEF3C7/111827?text=Mobile+View" alt="Analytics Dashboard - Mobile" class="w-full h-full object-cover"></div>
+                                </div>
+                                <button class="carousel-prev absolute top-1/2 left-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full focus:outline-none"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
+                                <button class="carousel-next absolute top-1/2 right-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full focus:outline-none"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
+                                <div class="carousel-dots"></div>
+                            </div>
+                            <div class="stuff-card-content flex flex-col flex-grow">
+                                 <h4 class="font-bold text-xl mb-2">Analytics Dashboard</h4>
+                                <p class="text-gray-600 mb-4 text-sm flex-grow">A concept for a data-rich analytics dashboard, focusing on clear data visualization and user-friendly navigation.</p>
+                                <div class="flex flex-wrap gap-2 mt-auto">
+                                     <span class="tag !bg-blue-100 !text-blue-800 !border-blue-300 font-mono text-xs px-2 py-1 rounded">Figma</span>
+                                     <span class="tag !bg-green-100 !text-green-800 !border-green-300 font-mono text-xs px-2 py-1 rounded">Data Viz</span>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+
             </section>
 
             <!-- Skills Section -->
@@ -501,7 +724,7 @@
                         <span class="absolute inset-0 flex items-center transition-all duration-300 ease-in-out group-hover:-translate-y-full">Technical Skills</span>
                         <span class="absolute inset-0 flex items-center translate-y-full transition-all duration-300 ease-in-out group-hover:translate-y-0">Can print Hello World in</span>
                     </h4>
-                    <div class="flex flex-wrap gap-2 mb-6">
+                    <div class="skills-container flex flex-wrap gap-2 mb-6">
                         <span class="tag font-mono text-sm px-3 py-1 rounded-md !bg-red-100 !text-red-800 !border-red-300">Java</span>
                         <span class="tag font-mono text-sm px-3 py-1 rounded-md !bg-blue-100 !text-blue-800 !border-blue-300">Python</span>
                         <span class="tag font-mono text-sm px-3 py-1 rounded-md !bg-gray-200 !text-gray-800 !border-gray-400">C/C++</span>
@@ -528,7 +751,7 @@
                         <span class="absolute inset-0 flex items-center transition-all duration-300 ease-in-out group-hover:-translate-y-full">Core Concepts</span>
                         <span class="absolute inset-0 flex items-center translate-y-full transition-all duration-300 ease-in-out group-hover:translate-y-0">The fundamentals.</span>
                     </h4>
-                    <div class="flex flex-wrap gap-2 mb-6">
+                    <div class="skills-container flex flex-wrap gap-2 mb-6">
                         <span class="tag font-mono text-sm px-3 py-1 rounded-md !bg-lime-100 !text-lime-800 !border-lime-300">Operating Systems</span>
                         <span class="tag font-mono text-sm px-3 py-1 rounded-md !bg-fuchsia-100 !text-fuchsia-800 !border-fuchsia-300">Computer Networks</span>
                         <span class="tag font-mono text-sm px-3 py-1 rounded-md !bg-pink-100 !text-pink-800 !border-pink-300">DBMS</span>
@@ -793,6 +1016,14 @@
         </div>
     </div>
 
+    <!-- Fullscreen Media Viewer Modal -->
+    <div id="fullscreen-modal" class="fixed inset-0 bg-black bg-opacity-90 items-center justify-center p-4 hidden z-50">
+        <button id="close-fullscreen-btn" class="absolute top-4 right-6 text-white text-5xl font-bold leading-none hover:opacity-75 transition-opacity">&times;</button>
+        <div id="fullscreen-content" class="max-w-full max-h-full flex items-center justify-center">
+            <!-- Image or Video will be injected here by JS -->
+        </div>
+    </div>
+
     <script>
         const menuToggle = document.getElementById('menu-toggle');
         const navMenu = document.getElementById('nav-menu');
@@ -826,6 +1057,12 @@
             sections.forEach(section => {
                 section.classList.toggle('active', section.id === targetId);
             });
+
+            // If the projects section is now active, initialize the pill position
+            if (targetId === 'projects') {
+                // Use a short timeout to ensure the element is visible and has dimensions before calculating
+                setTimeout(setPillPosition, 50); 
+            }
             
             // Hide menu on mobile after click
             if (window.innerWidth < 768) {
@@ -982,28 +1219,215 @@
         // Initial call to display immediately
         updateAgeClock();
 
-        // Hacker Text Scramble Effect for Headings
-        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        // Project Tabs Logic
+        const projectTabBtns = document.querySelectorAll('.project-tab-btn');
+        const projectTabPanes = document.querySelectorAll('.project-tab-pane');
+        const pillBg = document.getElementById('project-pill-bg');
+        const tabsContainer = document.getElementById('project-tabs-container');
 
-        document.querySelectorAll('.scramble-effect').forEach(heading => {
+        function setPillPosition() {
+            const activeButton = tabsContainer.querySelector('.project-tab-btn.active');
+            if (!activeButton || !pillBg) return;
+            pillBg.style.width = `${activeButton.offsetWidth}px`;
+            pillBg.style.left = `${activeButton.offsetLeft}px`;
+        }
+
+        projectTabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.dataset.target;
+
+                projectTabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                projectTabPanes.forEach(pane => {
+                    pane.classList.toggle('active', pane.id === targetId);
+                });
+                
+                setPillPosition();
+            });
+        });
+
+        // Set initial position and update on resize
+        // window.addEventListener('load', setPillPosition);
+        window.addEventListener('resize', setPillPosition);
+
+        // Carousel Logic for Stuff Cards
+        document.querySelectorAll('.stuff-carousel').forEach(carousel => {
+            const track = carousel.querySelector('.carousel-track');
+            const slides = Array.from(track.children);
+            const nextButton = carousel.querySelector('.carousel-next');
+            const prevButton = carousel.querySelector('.carousel-prev');
+            const dotsContainer = carousel.querySelector('.carousel-dots');
+            const slideCount = slides.length;
+            let autoScrollInterval;
+
+            if (!track || slideCount <= 1) {
+                if (nextButton) nextButton.style.display = 'none';
+                if (prevButton) prevButton.style.display = 'none';
+                if (dotsContainer) dotsContainer.style.display = 'none';
+                return;
+            }
+
+            let currentIndex = 0;
+
+            // Create dots
+            if (dotsContainer) {
+                slides.forEach((_, i) => {
+                    const dot = document.createElement('button');
+                    dot.classList.add('dot');
+                    dot.addEventListener('click', () => {
+                        moveToSlide(i);
+                        resetAutoScroll();
+                    });
+                    dotsContainer.appendChild(dot);
+                });
+            }
+            const dots = dotsContainer ? Array.from(dotsContainer.children) : [];
+
+            const updateDots = () => {
+                if (dots.length > 0) {
+                    dots.forEach(dot => dot.classList.remove('active'));
+                    dots[currentIndex].classList.add('active');
+                }
+            };
+
+            const moveToSlide = (index) => {
+                currentIndex = index;
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                updateDots();
+            };
+
+            // Auto-scroll functionality
+            const startAutoScroll = () => {
+                autoScrollInterval = setInterval(() => {
+                    const nextIndex = (currentIndex === slideCount - 1) ? 0 : currentIndex + 1;
+                    moveToSlide(nextIndex);
+                }, 4000); // Change slide every 4 seconds
+            };
+
+            const resetAutoScroll = () => {
+                clearInterval(autoScrollInterval);
+                startAutoScroll();
+            };
+
+            // Event Listeners for buttons
+            prevButton.addEventListener('click', () => {
+                const prevIndex = (currentIndex === 0) ? slideCount - 1 : currentIndex - 1;
+                moveToSlide(prevIndex);
+                resetAutoScroll();
+            });
+
+            nextButton.addEventListener('click', () => {
+                const nextIndex = (currentIndex === slideCount - 1) ? 0 : currentIndex + 1;
+                moveToSlide(nextIndex);
+                resetAutoScroll();
+            });
+
+            // Pause on hover
+            carousel.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+            carousel.addEventListener('mouseleave', startAutoScroll);
+
+            // Swipe functionality for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const swipeThreshold = 50; // Minimum distance for a swipe
+
+            track.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                clearInterval(autoScrollInterval); // Pause scroll on touch
+            }, { passive: true });
+
+            track.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+                startAutoScroll(); // Resume scroll after touch
+            }, { passive: true });
+
+            const handleSwipe = () => {
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    // Swiped left
+                    const nextIndex = (currentIndex === slideCount - 1) ? 0 : currentIndex + 1;
+                    moveToSlide(nextIndex);
+                } else if (touchEndX > touchStartX + swipeThreshold) {
+                    // Swiped right
+                    const prevIndex = (currentIndex === 0) ? slideCount - 1 : currentIndex - 1;
+                    moveToSlide(prevIndex);
+                }
+            };
+
+            // Initial setup
+            updateDots();
+            startAutoScroll();
+        });
+
+
+        // Fullscreen Modal Logic
+        const fullscreenModal = document.getElementById('fullscreen-modal');
+        const closeFullscreenBtn = document.getElementById('close-fullscreen-btn');
+        const fullscreenContent = document.getElementById('fullscreen-content');
+
+        if (fullscreenModal && closeFullscreenBtn && fullscreenContent) {
+            const openModal = (mediaElement) => {
+                fullscreenContent.innerHTML = ''; // Clear previous content
+                const clone = mediaElement.cloneNode(true);
+                clone.className = ''; // Remove all original classes
+                fullscreenContent.appendChild(clone);
+                fullscreenModal.classList.remove('hidden');
+                fullscreenModal.classList.add('active');
+            };
+
+            const closeModalFS = () => {
+                fullscreenModal.classList.add('hidden');
+                fullscreenModal.classList.remove('active');
+                fullscreenContent.innerHTML = ''; // Clean up
+            };
+
+            closeFullscreenBtn.addEventListener('click', closeModalFS);
+            fullscreenModal.addEventListener('click', (e) => {
+                if (e.target === fullscreenModal) { // Close if clicking on the background
+                    closeModalFS();
+                }
+            });
+
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !fullscreenModal.classList.contains('hidden')) {
+                    closeModalFS();
+                }
+            });
+
+            // Add click listeners to all carousel slides to open the modal
+            document.querySelectorAll('.carousel-slide').forEach(slide => {
+                slide.addEventListener('click', () => {
+                    const media = slide.querySelector('img, video');
+                    if (media) {
+                        openModal(media);
+                    }
+                });
+            });
+        }
+        
+        // Scramble Text Effect
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        document.querySelectorAll('.scramble-effect').forEach(element => {
             let interval = null;
-            
-            heading.onmouseover = event => {
+            element.dataset.value = element.innerText;
+
+            element.onmouseover = event => {  
                 let iteration = 0;
                 
                 clearInterval(interval);
                 
                 interval = setInterval(() => {
                     event.target.innerText = event.target.innerText
-                        .split("")
-                        .map((letter, index) => {
-                            if(index < iteration) {
-                                return event.target.dataset.value[index];
-                            }
+                    .split("")
+                    .map((letter, index) => {
+                        if(index < iteration) {
+                            return event.target.dataset.value[index];
+                        }
                         
-                            return letters[Math.floor(Math.random() * 26)]
-                        })
-                        .join("");
+                        return letters[Math.floor(Math.random() * 26)]
+                    })
+                    .join("");
                     
                     if(iteration >= event.target.dataset.value.length){ 
                         clearInterval(interval);
@@ -1011,8 +1435,113 @@
                     
                     iteration += 1 / 3;
                 }, 30);
-            };
+            }
         });
+
+        // --- Drag and Drop for Skills (with Touch Support) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const containers = document.querySelectorAll('#skills .skills-container');
+
+            containers.forEach(container => {
+                let draggingEle = null;
+
+                const handleMove = (x, y) => {
+                    if (!draggingEle) return;
+
+                    const afterElement = getDragAfterElement(container, y);
+                    const isNewPosition = (afterElement === null && container.lastChild !== draggingEle) || 
+                                          (afterElement && afterElement !== draggingEle.nextSibling);
+
+                    if (isNewPosition) {
+                        const siblings = [...container.querySelectorAll('.tag:not(.dragging):not(#add-skill-btn)')];
+                        const firstPositions = new Map();
+                        siblings.forEach(el => firstPositions.set(el, el.getBoundingClientRect()));
+
+                        if (afterElement === null) {
+                            container.appendChild(draggingEle);
+                        } else {
+                            container.insertBefore(draggingEle, afterElement);
+                        }
+
+                        siblings.forEach(el => {
+                            const first = firstPositions.get(el);
+                            const last = el.getBoundingClientRect();
+                            const deltaX = first.left - last.left;
+                            const deltaY = first.top - last.top;
+
+                            if (deltaX !== 0 || deltaY !== 0) {
+                                el.classList.add('shuffling');
+                                el.style.transition = 'none';
+                                el.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+                                
+                                el.offsetHeight; // Force reflow
+
+                                el.style.transition = 'transform 0.25s ease';
+                                el.style.transform = '';
+                                
+                                el.addEventListener('transitionend', () => {
+                                    el.classList.remove('shuffling');
+                                    el.style.transition = '';
+                                }, { once: true });
+                            }
+                        });
+                    }
+                };
+
+                const throttledMove = (x, y) => {
+                    requestAnimationFrame(() => handleMove(x, y));
+                };
+
+                container.addEventListener('dragover', e => {
+                    e.preventDefault();
+                    throttledMove(e.clientX, e.clientY);
+                });
+
+                container.addEventListener('touchmove', e => {
+                    if (!draggingEle) return;
+                    e.preventDefault();
+                    const touch = e.touches[0];
+                    throttledMove(touch.clientX, touch.clientY);
+                }, { passive: false });
+
+                container.querySelectorAll('.tag:not(#add-skill-btn)').forEach(draggable => {
+                    draggable.setAttribute('draggable', true);
+
+                    const dragStartHandler = () => {
+                        draggingEle = draggable;
+                        setTimeout(() => draggable.classList.add('dragging'), 0);
+                    };
+                    
+                    const dragEndHandler = () => {
+                        if (!draggingEle) return;
+                        draggingEle.classList.remove('dragging');
+                        draggingEle = null;
+                    };
+
+                    draggable.addEventListener('dragstart', dragStartHandler);
+                    draggable.addEventListener('dragend', dragEndHandler);
+                    draggable.addEventListener('touchstart', dragStartHandler, { passive: true });
+                    draggable.addEventListener('touchend', dragEndHandler);
+                });
+            });
+
+            function getDragAfterElement(container, y) {
+                const draggableElements = [...container.querySelectorAll('.tag:not(.dragging):not(#add-skill-btn)')];
+                
+                return draggableElements.reduce((closest, child) => {
+                    const box = child.getBoundingClientRect();
+                    const offset = y - box.top - box.height / 2;
+                    
+                    if (offset < 0 && offset > closest.offset) {
+                        return { offset, element: child };
+                    } else {
+                        return closest;
+                    }
+                }, { offset: Number.NEGATIVE_INFINITY }).element;
+            }
+        });
+
     </script>
 </body>
 </html>
+
